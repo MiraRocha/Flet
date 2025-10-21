@@ -9,12 +9,12 @@ def main(page: Page):
         width=400,height=850,
         bgcolor=BG, 
         border_radius=35,
-        content=Stack(
-            controls=[
-                page_1,
-                page_2
-            ]
-        )
+        #content=Stack(
+          #  controls=[
+        #page_1,
+               # page_2
+         #   ]
+        #)
         )
     page.add(container)
 
