@@ -5,6 +5,10 @@ def main(page: Page):
     FMG = '#97b4ff'
     FG = '#3450a1'
     PINK = '#eb06ff'
+
+    def route_change(route):
+        page.views.clear()
+        #page.views.append()
     
     tasks = Column()
     
@@ -73,7 +77,11 @@ def main(page: Page):
                 Stack(
                     controls=[
                         tasks,
-                        #FloatingActionButton()
+                        FloatingActionButton(
+                            icon=Icons.ADD,
+                            on_click=lambda _: page.go('/create_task')
+
+                        )
                     ]
                 )
             ],
@@ -113,5 +121,8 @@ def main(page: Page):
     
     
     page.add(container)
+
+    page.on_route_change = route_change
+    page.go(page.route)
 
 app(target=main,  port=0)
