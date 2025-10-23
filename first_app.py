@@ -8,7 +8,14 @@ def main(page: Page):
 
     def route_change(route):
         page.views.clear()
-        #page.views.append()
+        page.views.append(
+            View(
+                "/", #rota inicial
+                [
+                    container
+                ]
+            ),
+        )
     
     tasks = Column()
     
