@@ -6,17 +6,27 @@ def main(page: Page):
     FG = '#3450a1'
     PINK = '#eb06ff'
 
+    
+
     def route_change(route):
         page.views.clear()
         page.views.append(
-            View(
-                "/", #rota inicial
-                [
-                    container
-                ]
-            ),
+            pages[page.route]#chamamos o nosso dicionario de rotas aqui
         )
-    
+    create_task_view = Container(on_click=lambda_: page.go('/'),
+        content=Container(
+            height=40,
+            width=40,
+            content=Text('x'))
+    )  
+
+    tasks = Column(
+        height=400,
+        scroll='auto',
+        controls=[Container(height=50,width=300,bgcolor='red')]
+    )
+
+
     tasks = Column()
     
     categories_card = Row(  
@@ -112,7 +122,8 @@ def main(page: Page):
             )
         ]
     )
-    container = Container (   
+    
+    container= Container (   
         width=400,
         height=850,
         bgcolor=BG,
@@ -123,12 +134,27 @@ def main(page: Page):
                 page_2,
             ],
         ),
-    )
-        
+    )    
     
-    
-    page.add(container)
+    pages = {#fizemos um dicionario para definir rotas de uma pagina para a outra
+        '/':View(
+            "/",
+            [
+                container
+            ],
+        ),
+        '/create_task':View(
+            "/create_task",
+            [
+                create_task_view
+            ],
+        )
+    }
 
+    
+
+    page.add(container)
+    
     page.on_route_change = route_change
     page.go(page.route)
 
