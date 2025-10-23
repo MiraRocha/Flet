@@ -1,3 +1,5 @@
+from flet import padding
+
 from flet import *
 
 def main(page: Page):
@@ -13,18 +15,33 @@ def main(page: Page):
         page.views.append(
             pages[page.route]#chamamos o nosso dicionario de rotas aqui
         )
-    create_task_view = Container(on_click=lambda_: page.go('/'),
-        content=Container(
+    create_task_view = Container(
+        content=Container(on_click=lambda _: page.go('/'),
             height=40,
             width=40,
-            content=Text('x'))
+            content=Text('x')
+            )
     )  
 
     tasks = Column(
         height=400,
         scroll='auto',
-        controls=[Container(height=50,width=300,bgcolor='red')]
+        #controls=[
+            #Container(height=50,width=300,bgcolor='red'),
+            #Container(height=50,width=300,bgcolor='red'),
+            #Container(height=50,width=300,bgcolor='red'),
+            #Container(height=50,width=300,bgcolor='red'),
+            #]
     )
+    for i in range(10):
+        tasks.controls.append(
+            Container(
+                height=50,
+                width=300,
+                bgcolor=BG,
+                border_radius=25
+                )
+        )
 
 
     tasks = Column()
